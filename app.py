@@ -1,4 +1,5 @@
 import csv
+from flask import abort
 from flask import Flask 
 from flask import render_template
 app = Flask(__name__)
@@ -31,6 +32,7 @@ def detail(row_id):
 		if row["id"] == row_id:
 		#if row in csv is same as row id (matches) then run the code
 			return render_template(template, object=row)
+	abort(404)
 
 # If this script is run from the command line
 if __name__ == "__main__":
