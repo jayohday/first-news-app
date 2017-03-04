@@ -19,10 +19,18 @@ def get_csv():
 @app.route('/')
 def index():
 	template = "index.html"
-	# landing page for website
 	object_list = get_csv()
-	return render_template(template, object_list = object_list)
-	#returns index to function
+	return render_template(template, object_list=object_list)
+	#returns index, data to function
+
+@app.route('/<row_id>/')
+def detail(row_id):
+	template = "detail.html"
+	object_list = get_csv()
+	for row in object_list:
+		if row["id"] == row_id:
+		#if row in csv is same as row id (matches) then run the code
+			return render_template(template, object=row)
 
 # If this script is run from the command line
 if __name__ == "__main__":
